@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Переводчик на транслит со статистикой</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
 </head>
 
 <body>
-    <!-- <div id="loader-identity"></div> -->
+
+    <header>
+        <div id="header">Переводчик на транслит</div>
+    </header>
 
     <section>
-        <h1>Переводчик на транслит</h1>
         <textarea id="input" placeholder="Введите текст и нажмите на кнопку Транслит."></textarea>
         <p></p>
         <input id="button" type="submit" value="Транслит"></input>
@@ -37,6 +38,4 @@
         <h1>Графики</h1>
         <canvas id="chart"></canvas>
     </div>
-	
-	<script src="kazhentsev.js"></script>
 </body>

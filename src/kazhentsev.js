@@ -1,6 +1,7 @@
 import './kazhentsev.css';
 import translitModule from './translitModule';
 import countProcessor from './countProcessor';
+import '../node_modules/chart.js/dist/Chart'
 
 document.getElementById("button").onclick = buttonClick;
 
@@ -31,7 +32,9 @@ function buttonClick()
             datasets: [{
                 label: "Итоговое число букв",
                 data: Array.from(phrase.retMap.values()),
-                borderWidth: 1
+                borderWidth: 1,
+                backgroundColor: '#333333',
+                borderColor: '#333333'
             }]
         },
         options: {
@@ -41,6 +44,11 @@ function buttonClick()
                         beginAtZero: true
                     }
                 }]
+            },
+            legend: {
+                labels: {
+                    fontColor: '#333333'
+                }
             }
         }
     });
