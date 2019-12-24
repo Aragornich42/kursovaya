@@ -68,56 +68,58 @@ map.set("Э", "E");
 map.set("Ю", "Ju");
 map.set("Я", "Ja");
 
-export function translit(word)
-{
-	let answer = "";
-	let tmp = "";
-	for(let ch of word)
+module.exports = {
+    translit: function translit(word)
 	{
-		tmp = map.get(ch);
-		if(tmp === undefined)
-			answer += ch;
-		else
-			answer += tmp;
-	}
-	return answer;
-}
+		let answer = "";
+		let tmp = "";
+		for(let ch of word)
+		{
+			tmp = map.get(ch);
+			if(tmp === undefined)
+				answer += ch;
+			else
+				answer += tmp;
+		}
+		return answer;
+	},
 
-export function translitWithStats(word)
-{
-	let retMap = new Map();
-	let answer = "";
-	let tmp = "";
-	let num = 0;
-	for(let ch of word)
+    translitWithStats: function translitWithStats(word)
 	{
-		tmp = map.get(ch);
-		if(tmp === undefined) 
+		let retMap = new Map();
+		let answer = "";
+		let tmp = "";
+		let num = 0;
+		for(let ch of word)
 		{
-			answer += ch;
-			if(retMap.has(ch))
+			tmp = map.get(ch);
+			if(tmp === undefined) 
 			{
-				num = retMap.get(ch);
-				retMap.set(ch, ++num);
+				answer += ch;
+				if(retMap.has(ch))
+				{
+					num = retMap.get(ch);
+					retMap.set(ch, ++num);
+				}
+				else
+				{
+					retMap.set(ch, 1);
+				}
 			}
 			else
 			{
-				retMap.set(ch, 1);
+				answer += tmp;
+				if(retMap.has(tmp))
+				{
+					num = retMap.get(tmp);
+					retMap.set(tmp, ++num);
+				}
+				else
+				{
+					retMap.set(tmp, 1);
+				}
 			}
 		}
-		else
-		{
-			answer += tmp;
-			if(retMap.has(tmp))
-			{
-				num = retMap.get(tmp);
-				retMap.set(tmp, ++num);
-			}
-			else
-			{
-				retMap.set(tmp, 1);
-			}
-		}
-	}
-	return {answer, retMap};
-}
+		return {answer, retMap};
+	},
+};

@@ -1,7 +1,6 @@
 import './kazhentsev.css';
-import {translitWithStats} from './translitModule.js';
+import translitModule from './translitModule';
 import countProcessor from './countProcessor';
-//import Chart from 'chart.js';
 
 document.getElementById("button").onclick = buttonClick;
 
@@ -9,7 +8,7 @@ function buttonClick()
 {
     //document.getElementById("loader-identity").style.display = "block";
     let word = document.getElementById("input").value;
-    let phrase = translitWithStats(word);
+    let phrase = translitModule.translitWithStats(word);
     let symbols = countProcessor.getSymbolsCount(word);
     let params = countProcessor.getParamsCount(word);
     //document.getElementById("loader-identity").style.display = "none";
